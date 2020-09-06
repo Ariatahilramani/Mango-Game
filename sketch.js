@@ -50,6 +50,7 @@ function draw() {
   image(boy,140,530,200,200);
  
 
+  
   ground.display();
   stone.display();
   mango1.display();
@@ -60,13 +61,12 @@ function draw() {
   sling.display();
   
 
-  detectCollision(stone,mango1);
-  detectCollision(stone,mango2);
-  detectCollision(stone,mango3);
-  detectCollision(stone,mango4);
-  detectCollision(stone,mango5);
 
-  
+  detectCollision(stone.body,mango1.body);
+  detectCollision(stone.body,mango2.body);
+  detectCollision(stone.body,mango3.body);
+  detectCollision(stone.body,mango4.body);
+  detectCollision(stone.body,mango5.body);
  
  
 }
@@ -75,7 +75,6 @@ function mouseDragged(){
     Matter.Body.setPosition(stone.body,{x:mouseX,y:mouseY});
 }
 function mouseReleased(){
-	sling.fly();
 }
 
 function keyPressed(){
