@@ -18,7 +18,7 @@ function preload()
 }
 
 function setup() {
-	createCanvas(900, 700);
+	createCanvas(2000, 700);
 
 
 	engine = Engine.create();
@@ -28,12 +28,12 @@ function setup() {
 
 
 	ground= new Ground(10,680,2000,10);
-	stone= new Stone(140,580,30,30);
-	mango1= new Mango(760,360,40,40);
-	mango2= new Mango(620,440,40,40);
-	mango3= new Mango(680,440,40,40);
-	mango4= new Mango(800,420,40,40);
-	mango5= new Mango(740,400,40,40);
+	stone= new Stone(140,580,30);
+	mango1= new Mango(760,360,40);
+	mango2= new Mango(620,440,40);
+	mango3= new Mango(680,440,40);
+	mango4= new Mango(800,420,40);
+	mango5= new Mango(740,400,40);
 	sling = new Sling(stone.body,{x:180,y:580});
 
 	Engine.run(engine);
@@ -62,11 +62,11 @@ function draw() {
   
 
 
-  detectCollision(stone.body,mango1.body);
-  detectCollision(stone.body,mango2.body);
-  detectCollision(stone.body,mango3.body);
-  detectCollision(stone.body,mango4.body);
-  detectCollision(stone.body,mango5.body);
+  detectCollision(stone,mango1);
+  detectCollision(stone,mango2);
+  detectCollision(stone,mango3);
+  detectCollision(stone,mango4);
+  detectCollision(stone,mango5);
  
  
 }
@@ -75,6 +75,7 @@ function mouseDragged(){
     Matter.Body.setPosition(stone.body,{x:mouseX,y:mouseY});
 }
 function mouseReleased(){
+  sling.fly();
 }
 
 function keyPressed(){
@@ -89,7 +90,7 @@ mangoBodyPosition=lmango.body.position;
 stoneBodyPosition=lstone.body.position;
 
 var distance = dist(stoneBodyPosition.x,stoneBodyPosition.y,mangoBodyPosition.x,mangoBodyPosition.y);
-if(distance<=lmango.r+lstone.r){
+if(distance<=lmango.radius+lstone.radius){
 	Matter.Body.setStatic(lmango.body,false);
 }
 }
